@@ -21,6 +21,7 @@
             "pixelfear/composer-dist-plugin": true
         }
     },
+	"license": "MIT",
     "extra": {
         "statamic": {
             "name": "StatComm",
