@@ -16,6 +16,7 @@ StatComm replaces heavy external comment frameworks with an integrated, reposito
 * **Zero-Config Validation Sync:** Automatically parses your Statamic form blueprints (`blog_comments`) to dynamically match input constraints, validation rules, and requirement markers.
 * **Decoupled Repository Query Streaming:** Leverages database-level pagination blocks instead of loading whole submission collections into active memory.
 * **Invisible Spam Interceptors:** Equipped with automated un-validated honeypot properties and parent tracing matrix tags to intercept algorithmic bot runs silently.
+* **Approval Only:** Only allow comments which have been manually approved by an admin. 
 * **Telemetry Widgets:** Includes responsive terminal feed components designed to loop source nodes, timestamp deltas, and origin entries onto public dashboards.
 * **Control Panel Control Console:** A fully responsive audit matrix dashboard utilizing inline color maps, volumetric indicators, character density meters, and full data-purging (trace scrubbing) capabilities.
 
@@ -44,7 +45,7 @@ To initialize the backend form storage arrays, publish the baseline form bluepri
 php artisan vendor:publish --tag=statcomm-config
 ```
 
-This creates a blog_comments.yaml engine map inside your resources/forms/ folder directory.
+This creates a `blog_comments.yaml` engine map inside your resources/forms/ folder directory.
 
 ### 3. Publish Visual Canvas Layouts (Optional)
 If you wish to modify the blade template html structures or customize the front-end style vectors to match your site layout profiles, publish the view assets:
@@ -100,13 +101,34 @@ To capture data updates globally and loop the latest transmission packets onto s
 | :heading | String | "RECENT_COMM_FEED" | Customizes the console header text label. |
 | :showDate | Boolean | true | Toggles human-readable time-difference strings (diffForHumans()). |
 
+
 ### Control Panel Administration Dashboard
 The package automatically extends your native Statamic navigation array, generating an autonomous **StatComm** item inside the *Tools* group block menu.
 Clicking the link navigates to a secure dashboard that calculates total logged submissions, charts character averages, tracks current timespan windows, features algorithmic initials generators, and allows you to audit user entries, execute structural content overrides, or permanently purge invalid entries.
 
+---
+
+## More Info
+
+Please checkout the [docs/DESIGN.md](docs/DESIGN.md) document for planned features, and what is going to be coming in future updates. If you have suggestions, please let me know, if you want to help out, submit a pull request. 
+
+[docs/DESIGN.md](docs/DESIGN.md) Also contains a lot more info about the inner workings of the addon. I wanted to keep the readme light and only focus on what someone needs to get it working, not what is needed to develop it. 
+
+If people like this, and it gets a few stars, I will endeavor to bang out some of the cooler features such as sentiment analysis (filter out mean comments), and other cool stuff. This is just an early draft that I got working so my blog could have comments. My **HOPE** is that other people will try it out and like it and maybe it can be a rock solid way of getting people to interact with your Statamic articles. 
+
+
+---
+
 ### License & Sponsorship
 
-Distributed freely under the open-source **MIT License**. Maintained, optimized, and engineered under code flags sponsored by **~[HUEMENT](https://huement.com/)~**.
+Distributed freely under the open-source **MIT License**. Maintained, optimized, and engineered / sponsored by **[HUEMENT](https://huement.com/)**.
 
-![](docs/smile.png)
+<p align="center">
+  <strong>If this software saved you time or a headache, consider keeping the engine running!</strong><br><br>
+  <a href='https://ko-fi.com/U1A7222617' target='_blank'>
+    <img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+  </a>
+</p>
+
+
 

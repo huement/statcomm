@@ -34,45 +34,57 @@ The package operates autonomously under the Huement\StatComm namespace. The file
 | resources/views/livewire/statcomm-widget.blade.php | Blade Layout Template | Pitch-black dashboard telemetric overview monitoring active comment streams. |
 | resources/views/cp/index.blade.php | Blade CP Template | Volumetric logs display complete with selection flags and density status metrics. |
 | resources/views/cp/edit.blade.php | Blade CP Template | Modification canvas deck to edit, re-verify, or overwrite payload buffers. |
+
 ## 3. CORE SUB-SYSTEM ENGINEERING
 ### A. The Storage Definition Blueprint
-File Target: resources/forms/blog_comments.yaml
-The blueprint maps data arrays to the underlying storage files or Eloquent structures. It includes built-in honeypot variables and structural identification nodes:
+
+File Target: `resources/forms/blog_comments.yaml`
+
+The blueprint maps data arrays to the underlying storage files or Eloquent structures. It includes built-in honeypot variables and structural identification nodes. It also allows you to FORCE comments to be approved before they appear on the page. Pretty cool right? 
+
+Here is the file that does most of the heavy lifting in terms of configuration. 
 
 ```yaml
-title: "Blog Comments"
+title: 'Blog Comments'
 honeypot: honeypot_field
 blueprint:
-  sections:
-    main:
-      fields:
-        - handle: name
-          field:
-            type: text
-            display: "Name"
-            validate: "required|min:2|max:50"
-        - handle: email
-          field:
-            type: text
-            input_type: email
-            display: "Email Address"
-            validate: "required|email"
-        - handle: comment
-          field:
-            type: textarea
-            display: "Comment"
-            validate: "required|min:10|max:2000"
-        - handle: article_id
-          field:
-            type: text
-            display: "Article ID"
-            visibility: hidden
-            validate: "required"
-        - handle: parent_id
-          field:
-            type: text
-            display: "Parent Comment ID"
-            visibility: hidden
+    sections:
+        main:
+            fields:
+                - handle: name
+                  field:
+                      type: text
+                      display: 'Name'
+                      validate: 'required|min:2|max:50'
+                - handle: email
+                  field:
+                      type: text
+                      input_type: email
+                      display: 'Email Address'
+                      validate: 'required|email'
+                - handle: comment
+                  field:
+                      type: textarea
+                      display: 'Comment'
+                      validate: 'required|min:10|max:2000'
+                - handle: article_id
+                  field:
+                      type: text
+                      display: 'Article ID'
+                      visibility: hidden
+                      validate: 'required'
+                - handle: parent_id
+                  field:
+                      type: text
+                      display: 'Parent Comment ID'
+                      visibility: hidden
+                - handle: approved
+                  field:
+                      type: toggle
+                      display: 'Approved Status'
+                      default: false
+                      visibility: visible
+
 ```
 
 ### B. Polymorphic Blueprint Validation Blueprint
