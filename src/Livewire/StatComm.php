@@ -75,51 +75,54 @@ class StatComm extends Component
         return $rules;
     }
 
-    /**
-     * Handle the comment submission lifecycle.
-     */
     public function submit()
     {
         $this->validate();
 
         $form = Form::find('blog_comments');
-
         if (!$form) {
             session()->flash('error', 'The comment storage driver is not configured.');
             return;
         }
 
-        $submission = $form->makeSubmission();
+        // ⚡ READ THE CONFIG: If moderation is required, default to false
+        $requireModeration = config('statcomm.require_moderation', true);
 
+        $submission = $form->makeSubmission();
         $submission->data([
             'name' => strip_tags(trim($this->name)),
             'email' => trim(strtolower($this->email)),
             'comment' => strip_tags(trim($this->comment)),
             'article_id' => $this->articleId,
             'parent_id' => $this->parentId,
+            'approved' => !$requireModeration, // ⚡ Sets status dynamically based on configuration
         ]);
 
         $submission->save();
 
         $this->reset(['name', 'email', 'comment', 'parentId', 'honeypot_field']);
 
-        session()->flash('success', 'Your comment has been posted successfully!');
+        // Customize message depending on moderation rule states
+        $message = $requireModeration
+            ? 'Your comment has been submitted and is holding for administrative moderation approval.'
+            : 'Your comment has been posted successfully!';
 
-        // Livewire 3: Go back to page 1 so the user can immediately see their newly added comment
+        session()->flash('success', $message);
         $this->gotoPage(1);
     }
 
-    /**
-     * Render the comment tree layout on the frontend template.
-     */
     public function render()
     {
-        // ⚡ REFACTORED FOR SPEED: Uses repository queries instead of loading everything into memory
-        $comments = FormSubmission::query()
+        $query = FormSubmission::query()
             ->where('form', 'blog_comments')
-            ->where('article_id', $this->articleId)
-            ->orderBy('date', 'desc')
-            ->paginate($this->perPage);
+            ->where('article_id', $this->articleId);
+
+        // ⚡ FILTER THE BUFFER: Hide unapproved entries if moderation is active
+        if (config('statcomm.require_moderation', true)) {
+            $query->where('approved', true);
+        }
+
+        $comments = $query->orderBy('date', 'desc')->paginate($this->perPage);
 
         return view('statcomm::livewire.statcomm', [
             'comments' => $comments,

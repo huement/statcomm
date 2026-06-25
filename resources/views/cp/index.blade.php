@@ -58,7 +58,7 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
     {{-- System Response Notice Alerts --}}
     @if (session("success"))
     <div class="p-4 bg-zinc-900 border border-emerald-500/30 text-zinc-200 rounded-xl shadow-xl flex items-center space-x-3 text-xs">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" style="height:10px;width:10px;margin-left:16px"></span>
       <span>// SUCCESS_PROTOCOL_CLEARED: {{ session("success") }}</span>
     </div>
     @endif
@@ -130,7 +130,7 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
     </div>
 
     {{-- Main Table Area Card Canvas --}}
-    <div class="overflow-hidden shadow-2xl" style="background-color: #09090b; border: 1px solid #1f1f23; border-radius: 1rem;">
+    <div class="overflow-hidden shadow-2xl" style="background-color: rgba(14, 14, 17, 0.4); border: 1px solid #1f1f23; border-radius: 1rem;">
 
       <div class="p-5 border-b border-zinc-800 bg-zinc-950/40 flex flex-col md:flex-row gap-4 items-center justify-between" style="height:auto;min-height:50px;">
         <div class="flex items-center space-x-3">
@@ -138,7 +138,7 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
           <span class="text-xs font-bold uppercase tracking-wider text-zinc-300">Active Buffer Log Telemetry</span>
         </div>
 
-        <div class="flex items-center space-x-3 text-xs">
+        {{-- <div class="flex items-center space-x-3 text-xs">
           <div class="relative opacity-30">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-500">
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -150,19 +150,19 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
           <div class="px-3 py-1.5 rounded-xl opacity-30 text-xs flex items-center space-x-2 select-none cursor-not-allowed" style="background-color: #020205; border: 1px solid #27272a; color: #e4e4e7;">
             <span>All Sizes</span>
           </div>
-        </div>
+        </div> --}}
       </div>
 
-      <div class="px-6 py-2.5 bg-zinc-900/20 border-b border-zinc-800 flex items-center space-x-2 text-xs text-zinc-500">
+      {{-- <div class="px-6 py-2.5 bg-zinc-900/20 border-b border-zinc-800 flex items-center space-x-2 text-xs text-zinc-500">
         <span>Bulk Control:</span>
         <button type="button" class="text-cyan-400 hover:underline font-medium px-1">Select All</button>
         <span>|</span>
         <button type="button" class="text-zinc-400 hover:underline font-medium px-1">Select None</button>
-      </div>
+      </div> --}}
 
       @if ($comments->isEmpty())
       <div class="p-24 flex flex-col items-center justify-center text-center">
-        <svg class="w-8 h-8 text-cyan-500/30 mx-auto mb-3 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <svg class="w-8 h-8 text-cyan-500/30 mx-auto mb-3 animate-pulse" style="height:20px;width:20px;margin-left:16px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
         </svg>
         <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest">// NO_ACTIVE_DATA_TRAILS_FOUND_IN_BUFFER</p>
@@ -190,7 +190,7 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
             $charLength = strlen($comment->get('comment') ?? '');
 
             // Inline Status Badge Processing System Matrix
-            if ($charLength <= 20) { $badgeStyle='color: #10b981; background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2);' ; } elseif ($charLength <=40) { $badgeStyle='color: #06b6d4; background-color: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.2);' ; } else { $badgeStyle='color: #f59e0b; background-color: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2);' ; } @endphp <tr class="group transition-all duration-150 hover:bg-zinc-900/30">
+            if ($charLength <= 20) { $badgeStyle='color: #10b981; background-color: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2);' ; } elseif ($charLength <=40) { $badgeStyle='color: #06b6d4; background-color: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.2);' ; } else { $badgeStyle='color: #f59e0b; background-color: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2);' ; } @endphp <tr class="group transition-all duration-150 hover:bg-zinc-950" style="{{ $loop->even ? 'background-color: rgba(10,10,10,0.3)' : 'background-color: rgba(30,30,30,0.3)' }}">
               <td class="py-4 px-6 text-center">
                 <input type="checkbox" class="rounded bg-zinc-950 border-zinc-800 text-cyan-500 focus:ring-cyan-500/20 w-4 h-4 cursor-pointer" />
               </td>
@@ -229,6 +229,22 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
 
               <td class="py-4 px-6 whitespace-nowrap text-right">
                 <div class="inline-flex items-center justify-end space-x-2 opacity-40 group-hover:opacity-100 transition-all duration-200">
+                  {{-- ⚡ MODERATION INTERCEPTOR BUTTON --}}
+                  @if(! $comment->get('approved'))
+                  <form action="{{ cp_route('statcomm.approve', $comment->id()) }}" method="POST" class="inline-block my-0 ml-0 mr-1 p-0">
+                    @csrf
+                    <button type="submit" title="Authorize for broadcast" class="p-1.5 rounded-lg bg-zinc-800 hover:bg-emerald-500/20 text-emerald-400 border border-zinc-700 hover:border-emerald-500/40 transition-all cursor-pointer">
+                      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </button>
+                  </form>
+                  @else
+                  <span class="text-[9px] font-mono text-emerald-500/60 bg-emerald-950/10 border border-emerald-500/20 px-2 py-0.5 uppercase tracking-wider select-none rounded my-0 ml-0 mr-1">
+                    Live
+                  </span>
+                  @endif
+
                   <a href="{{ cp_route("statcomm.edit", $comment->id()) }}" title="Edit parameters" class="p-1.5 rounded-lg bg-zinc-800 hover:bg-cyan-500/20 border border-zinc-700 hover:border-cyan-500/40 transition-all inline-block" style="color: #06b6d4;">
                     <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -256,16 +272,16 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
       {{-- Footer Metrics Area Section --}}
       <div class="p-4 bg-zinc-950/60 border-t border-zinc-800 flex flex-col sm:flex-row gap-4 items-center justify-between text-xs text-zinc-500">
         <div>
-          Traces buffered in current view: <strong class="text-zinc-300">{{ $totalLogs }}</strong>
+          View Total: <strong class="text-zinc-300">{{ $totalLogs }}</strong>
         </div>
-        <div class="flex flex-wrap gap-x-6 gap-y-2">
-          <span class="flex items-center space-x-1.5">
+        <div class="flex flex-wrap gap-x-2 gap-y-2">
+          <span class="flex items-center space-x-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Minimal Payloads (&lt;20 Chars): <span class="text-zinc-300">{{ $minimalCount }}</span></span>
+            <span>Post (&lt;20 Chars): <span style="color: #06b6d4;">{{ $minimalCount }}</span></span>
           </span>
-          <span class="flex items-center space-x-1.5">
+          <span class="flex items-center space-x-2">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-            <span>Complex Payloads (&gt;=20 Chars): <span class="text-zinc-300">{{ $complexCount }}</span></span>
+            <span>Complex (&gt;=20 Chars): <span style="color: #10b981;">{{ $complexCount }}</span></span>
           </span>
         </div>
       </div>
@@ -273,16 +289,12 @@ $minimalCount = $comments->filter(fn($c) => strlen($c->get('comment') ?? '') < 2
 
     {{-- System Disclaimer Status Flag Box --}}
     <div class="w-full">
-      <div class="bg-zinc-950 border border-zinc-900/60 p-3 sm:p-4 text-[10px] sm:text-[11px] text-zinc-500 uppercase tracking-wider leading-relaxed flex items-start gap-2.5 sm:gap-3">
-        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-cyber-yellow mt-1 animate-pulse shrink-0"></span>
+      <div class="p-2 sm:p-1 text-xs sm:text-md text-zinc-500 uppercase tracking-wider leading-relaxed flex items-start gap-2 sm:gap-1" style="background-color: rgba(14, 14, 17, 0.4);">
+        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-yellow-400 mt-1 animate-pulse shrink-0"></span>
         <p class="min-w-0 flex-1">
-          System Moderation Interceptor is <strong class="font-bold" style="color: #f59e0b;">ON</strong> for this communication hub. All user transmission vectors must clear access protocol filtration approvals before broadcasting logs live to public network arrays.
+          Statcomm Telemetry Logs are transient in-memory. Sponsor outbound link connects safely via HTTPS.
         </p>
       </div>
-    </div>
-
-    <div class="p-4 text-center text-zinc-500 text-xs font-mono select-none">
-      Statcomm Telemetry Logs are transient in-memory. Sponsor outbound link connects safely via HTTPS.
     </div>
 
   </div>

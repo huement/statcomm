@@ -27,6 +27,14 @@ class ServiceProvider extends AddonServiceProvider
             __DIR__ . '/../resources/css' => public_path('vendor/statcomm/css'),
         ], 'statcomm-assets');
 
+        $this->publishes([
+            __DIR__ . '/../config/statcomm.php' => config_path('statcomm.php'),
+        ], 'statcomm-config');
+
+        $this->publishes([
+            __DIR__ . '/../resources/forms' => resource_path('forms'),
+        ], 'statcomm-config');
+
         if (class_exists(Livewire::class)) {
             // ⚡ REGISTER THE FORM + LIST
             Livewire::component('statcomm', StatComm::class);
@@ -37,7 +45,7 @@ class ServiceProvider extends AddonServiceProvider
         // 1. REGISTER THE SECURE CP DASHBOARD ROUTE
         $this->registerCpRoutes(function ($router) {
             $router->get('statcomm', [CpController::class, 'index'])->name('statcomm.index');
-
+            $router->post('statcomm/approve/{id}', [CpController::class, 'approve'])->name('statcomm.approve');
             // ⚡ Moderation Protocols
             $router->get('statcomm/edit/{id}', [CpController::class, 'edit'])->name('statcomm.edit');
             $router->post('statcomm/update/{id}', [CpController::class, 'update'])->name('statcomm.update');
@@ -51,8 +59,5 @@ class ServiceProvider extends AddonServiceProvider
                 ->route('statcomm.index');
         });
 
-        $this->publishes([
-            __DIR__ . '/../resources/forms' => resource_path('forms'),
-        ], 'statcomm-config');
     }
 }
