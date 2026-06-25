@@ -1,0 +1,27 @@
+.statcomm-pagination-nav nav div[role="navigation"] {
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statcomm-pagination-nav span[aria-current="page"] span {
+  background: #00f0ff !important;
+  /* cyber-cyan active matrix */
+  color: #09090e !important;
+  font-weight: 900;
+  border-radius: 0px !important;
+}
+
+.statcomm-pagination-nav a {
+  background-color: #0c0c12 !important;
+  border-color: #27272a !important;
+  color: #a1a1aa !important;
+  border-radius: 0px !important;
+  transition: all 0.2s ease;
+}
+
+.statcomm-pagination-nav a:hover {
+  color: #ff0055 !important;
+  /* cyber-pink hover glow */
+  border-color: #ff0055 !important;
+}

@@ -1,0 +1,37 @@
+{
+    "name": "huement/statcomm",
+    "autoload": {
+        "psr-4": {
+            "Huement\\StatComm\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Huement\\StatComm\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "statamic/cms": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "StatComm",
+            "description": "StatComm addon"
+        },
+        "laravel": {
+            "providers": [
+                "Huement\\StatComm\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
