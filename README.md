@@ -16,7 +16,7 @@ StatComm replaces heavy external comment frameworks with an integrated, reposito
 * **Zero-Config Validation Sync:** Automatically parses your Statamic form blueprints (`blog_comments`) to dynamically match input constraints, validation rules, and requirement markers.
 * **Decoupled Repository Query Streaming:** Leverages database-level pagination blocks instead of loading whole submission collections into active memory.
 * **Invisible Spam Interceptors:** Equipped with automated un-validated honeypot properties and parent tracing matrix tags to intercept algorithmic bot runs silently.
-* **Approval Only:** Only allow comments which have been manually approved by an admin. 
+* **Approval Only:** Only allow comments which have been manually approved by an admin.
 * **Telemetry Widgets:** Includes responsive terminal feed components designed to loop source nodes, timestamp deltas, and origin entries onto public dashboards.
 * **Control Panel Control Console:** A fully responsive audit matrix dashboard utilizing inline color maps, volumetric indicators, character density meters, and full data-purging (trace scrubbing) capabilities.
 
@@ -110,12 +110,15 @@ Clicking the link navigates to a secure dashboard that calculates total logged s
 
 ## More Info
 
-Please checkout the [docs/DESIGN.md](docs/DESIGN.md) document for planned features, and what is going to be coming in future updates. If you have suggestions, please let me know, if you want to help out, submit a pull request. 
+Please checkout the [docs/DESIGN.md](docs/DESIGN.md) document for planned features, and what is going to be coming in future updates. If you have suggestions, please let me know, if you want to help out, submit a pull request.
 
-[docs/DESIGN.md](docs/DESIGN.md) Also contains a lot more info about the inner workings of the addon. I wanted to keep the readme light and only focus on what someone needs to get it working, not what is needed to develop it. 
+[docs/DESIGN.md](docs/DESIGN.md) Also contains a lot more info about the inner workings of the addon. I wanted to keep the readme light and only focus on what someone needs to get it working, not what is needed to develop it.
 
-If people like this, and it gets a few stars, I will endeavor to bang out some of the cooler features such as sentiment analysis (filter out mean comments), and other cool stuff. This is just an early draft that I got working so my blog could have comments. My **HOPE** is that other people will try it out and like it and maybe it can be a rock solid way of getting people to interact with your Statamic articles. 
+If people like this, and it gets a few stars, I will endeavor to bang out some of the cooler features such as sentiment analysis (filter out mean comments), and other cool stuff. This is just an early draft that I got working so my blog could have comments. My **HOPE** is that other people will try it out and like it and maybe it can be a rock solid way of getting people to interact with your Statamic articles.
 
+### Developing
+
+[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) contains all the info about contributing to the project, how to get setup to develop on it, if you need to change stuff, and what tests are currently written. Everything you would need to know to expand or tweak the project is there. PLEASE, if you end up creating a cool feature, submit a pull request!! I am all for collaberation.
 
 ---
 
@@ -130,5 +133,4 @@ Distributed freely under the open-source **MIT License**. Maintained, optimized,
   </a>
 </p>
 
-
-
+**NOTE** If you want a specific feature added to the plugin, I do freelance work and would be more than happy to work something out. 
