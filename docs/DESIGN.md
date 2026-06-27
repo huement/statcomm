@@ -1,7 +1,7 @@
 # DESIGN DOCUMENT
 
 <center>
-  <img src="docs/smile.png" alt="Smile">
+  <img src="./smile.png" alt="Smile">
 </center>
 
 ![PHP Version](https://img.shields.io/badge/PHP-%3E%3D_8.3-06b6d4?style=flat-square&logo=php&logoColor=white)
