@@ -13,6 +13,9 @@ class CpController extends StatamicCpController
    */
   public function index()
   {
+    // 🔒 Enforce viewing permissions
+    $this->authorize('view comments');
+
     // Query directly from database arrays and paginate 20 entries per page
     $comments = FormSubmission::query()
       ->where('form', 'blog_comments')
@@ -30,6 +33,9 @@ class CpController extends StatamicCpController
    */
   public function edit(string|int $id)
   {
+    // 🔒 Enforce modification permissions
+    $this->authorize('edit comments');
+
     $form = Form::find('blog_comments');
     $comment = $form ? $form->submission($id) : null;
 
@@ -48,6 +54,9 @@ class CpController extends StatamicCpController
    */
   public function update(Request $request, string|int $id)
   {
+    // 🔒 Enforce modification permissions
+    $this->authorize('edit comments');
+
     $form = Form::find('blog_comments');
     $comment = $form ? $form->submission($id) : null;
 
@@ -56,7 +65,7 @@ class CpController extends StatamicCpController
     }
 
     // ⚡ Force the admin update array to match your core blueprint schema requirements
-    $request->validate($form->blueprint()->rules());
+    $form->blueprint()->fields()->addValues($request->all())->validate();
 
     $comment->set('name', $request->name);
     $comment->set('comment', $request->comment);
@@ -67,6 +76,9 @@ class CpController extends StatamicCpController
 
   public function approve(string|int $id)
   {
+    // 🔒 Enforce modification permissions
+    $this->authorize('edit comments');
+
     $form = Form::find('blog_comments');
     $comment = $form ? $form->submission($id) : null;
 
@@ -86,6 +98,9 @@ class CpController extends StatamicCpController
    */
   public function destroy(string|int $id)
   {
+    // 🔒 Enforce scrubbing/deletion permissions
+    $this->authorize('delete comments');
+
     $form = Form::find('blog_comments');
     $comment = $form ? $form->submission($id) : null;
 

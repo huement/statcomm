@@ -5,7 +5,7 @@ use Huement\StatComm\Tests\TestCase;
 use Livewire\Livewire;
 use Statamic\Facades\Form;
 
-uses(TestCase::class);
+// uses(TestCase::class);
 
 // Setup a clean helper state before each test if needed
 beforeEach(function () {

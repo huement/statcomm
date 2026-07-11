@@ -2,6 +2,7 @@
 
 namespace Huement\StatComm;
 
+use Statamic\Facades\Permission;
 use Huement\StatComm\Http\Controllers\CpController;
 use Huement\StatComm\Livewire\StatComm;
 use Huement\StatComm\Livewire\StatCommWidget;
@@ -42,6 +43,20 @@ class ServiceProvider extends AddonServiceProvider
             Livewire::component('statcomm-widget', StatCommWidget::class);
         }
 
+        // Register the permissions tree
+        Permission::extend(function () {
+            Permission::group('statcomm', 'StatComm Comments', function () {
+                Permission::register('view comments')
+                    ->label('View Comments List');
+
+                Permission::register('edit comments')
+                    ->label('Edit and Approve Comments');
+
+                Permission::register('delete comments')
+                    ->label('Delete Comments');
+            });
+        });
+
         // 1. REGISTER THE SECURE CP DASHBOARD ROUTE
         $this->registerCpRoutes(function ($router) {
             $router->get('statcomm', [CpController::class, 'index'])->name('statcomm.index');
@@ -56,7 +71,8 @@ class ServiceProvider extends AddonServiceProvider
         Nav::extend(function ($nav) {
             $nav->tools('StatComm')
                 ->icon('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a.75.75 0 0 1-1.074-.765 6 6 0 0 1 1.4-3.578C4.315 15.13 3 13.687 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" /></svg>')
-                ->route('statcomm.index');
+                ->route('statcomm.index')
+                ->can('view comments'); // ⚡ hide the sidebar icon from unauthorized users!
         });
 
     }

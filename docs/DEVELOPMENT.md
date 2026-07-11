@@ -29,7 +29,7 @@ To tell your root application to pull the addon from your local disk instead of 
 "repositories": [
     {
         "type": "path",
-        "url": "addons/huement/statcomm",
+        "url": "addons/statcomm",
         "options": {
             "symlink": true
         }
@@ -87,16 +87,25 @@ protected function rules(): array
 This plugin has a _somewhat_ robust testing suit. Its more than most of plugins get, and it will continue to expand as the plugin grows.
 
 ```bash
-derek@debdock:~/laravel-ten$ sartisan test addons/huement/statcomm/tests/Feature/StatCommComponentTest.php
+sail@ff855c114616:/var/www/html/addons/statcomm$ ./vendor/bin/pest
 
-   PASS  Addons\huement\statcomm\tests\Feature\StatCommComponentTest
-  ✓ it fails validation when mandatory comment fields are left blank     0.32s
-  ✓ it allows successful comment submissions when validation passes      0.07s
-  ✓ it silently ignores submissions when the honeypot field is trapped   0.06s
+   PASS  Tests\Feature\CpControllerTest
+  ✓ it intercepts unauthenticated guests and forces a login redirect                                                                         0.70s
+  ✓ it denies dashboard listing access to users missing the view privilege                                                                   0.44s
+  ✓ it blocks comment update permissions for unauthorized users                                                                              0.39s
+  ✓ it bypasses restrictions entirely for designated super users                                                                             0.50s
+  ✓ it grants access to roles explicitly bundled with the view comments permission                                                           0.51s
+  ✓ it authorizes execution of administrative functions for authorized users                                                                 0.41s
 
-  Tests:    3 passed (11 assertions)
-  Duration: 0.53s
+   PASS  Tests\Feature\StatCommComponentTest
+  ✓ it fails validation when mandatory comment fields are left blank                                                                         0.11s
+  ✓ it allows successful comment submissions when validation passes                                                                          0.09s
+  ✓ it silently ignores submissions when the honeypot field is trapped                                                                       0.09s
 
+  Tests:    9 passed (20 assertions)
+  Duration: 3.33s
+
+sail@ff855c114616:/var/www/html/addons/statcomm$
 ```
 
 StatComm features a robust integration testing suite built on **Pest PHP** and **Orchestra Testbench**. The tests are structured as isolated package feature tests, meaning they boot up a miniature, secure virtual Laravel/Statamic container environment to run component assertions without polluting your physical local databases or application state.
@@ -167,7 +176,11 @@ Bash
 ### Run the core addon suite
 
 ```bash
-./vendor/bin/sail pest addons/huement/statcomm/tests/Feature/StatCommComponentTest.php
+# Running this from the sail shell. If you dont use sail then adjust accordingly.
+$ > sail shell
+
+# However you get there, you just run pest from the addon root directory.
+sail@ff855c114616:/var/www/html/addons/statcomm$ ./vendor/bin/pest
 ```
 
 If you are writing a new feature or fixing a bug, please write an accompanying test statement inside StatCommComponentTest.php using the clean functional Pest syntax:

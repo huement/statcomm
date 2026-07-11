@@ -14,14 +14,17 @@
         "statamic/cms": "^6.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^10.8"
+        "pestphp/pest": "^3.0",
+        "orchestra/testbench": "^10.0",
+        "livewire/livewire": "^3.0"
     },
     "config": {
         "allow-plugins": {
-            "pixelfear/composer-dist-plugin": true
+            "pixelfear/composer-dist-plugin": true,
+            "pestphp/pest-plugin": true
         }
     },
-	"license": "MIT",
+    "license": "MIT",
     "extra": {
         "statamic": {
             "name": "StatComm",
